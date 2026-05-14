@@ -1,0 +1,238 @@
+:root {
+  color-scheme: dark;
+  --bg: #28324f;
+  --text: #eef2ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: var(--bg);
+  font-family: Inter, "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+}
+
+.app,
+.stage {
+  width: 100vw;
+  height: 100vh;
+}
+
+.app {
+  position: relative;
+}
+
+.stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: var(--bg);
+  cursor: pointer;
+  touch-action: none;
+}
+
+.control-panel {
+  position: absolute;
+  z-index: 10;
+  top: 18px;
+  left: 18px;
+  width: 220px;
+  padding: 14px 14px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 14px;
+  background: rgba(15, 18, 32, 0.62);
+  backdrop-filter: blur(10px);
+  color: var(--text);
+}
+
+.control-row {
+  display: grid;
+  gap: 7px;
+  margin-bottom: 10px;
+}
+
+.control-row:last-child {
+  margin-bottom: 0;
+}
+
+.control-row label {
+  font-size: 12px;
+  letter-spacing: 0;
+}
+
+.control-row input[type="range"] {
+  width: 100%;
+  margin: 0;
+  accent-color: #ffb95c;
+}
+
+.control-button {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
+  padding: 9px 10px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  font: inherit;
+  font-size: 12px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.control-button[aria-pressed="true"] {
+  background: rgba(255, 185, 92, 0.18);
+  border-color: rgba(255, 185, 92, 0.44);
+}
+
+.volume-row {
+  gap: 8px;
+}
+
+.volume-meter {
+  width: 100%;
+  height: 10px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.volume-meter-fill {
+  display: block;
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #ffd66e 0%, #ffb95c 40%, #ff8f48 100%);
+  box-shadow: 0 0 10px rgba(255, 185, 92, 0.24);
+  transition: width 80ms linear;
+}
+
+.volume-readout {
+  font-size: 12px;
+  line-height: 1;
+  opacity: 0.88;
+}
+
+.svg-host {
+  width: min(92vw, 720px);
+  min-width: 280px;
+  display: grid;
+  place-items: center;
+}
+
+.cake-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.loading {
+  color: var(--text);
+  font-size: 14px;
+}
+
+.flame-layer {
+  transform-box: view-box;
+  will-change: transform, opacity, filter;
+}
+
+.day-text-layer {
+  transform-box: view-box;
+  will-change: transform, opacity, filter;
+  pointer-events: none;
+}
+
+.night-text-layer,
+.night-glyph {
+  transform-box: view-box;
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+.night-cursor {
+  fill: #fff8ce;
+  filter: drop-shadow(0 0 4px rgba(255, 238, 155, 0.62));
+  pointer-events: none;
+}
+
+.cake-layer {
+  transform-box: view-box;
+  will-change: transform;
+}
+
+.flame-glow {
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0.18;
+  filter: blur(4px);
+}
+
+.flame-outer,
+.flame-middle,
+.flame-core {
+  transform-box: view-box;
+  will-change: transform, opacity, filter;
+}
+
+.flame-outer {
+  filter: none;
+}
+
+.flame-middle {
+  filter: none;
+}
+
+.flame-core {
+  filter: none;
+}
+
+.smoke-puff {
+  pointer-events: none;
+  fill: rgba(186, 199, 226, 0.58);
+  filter: blur(0.8px);
+  transform-box: view-box;
+}
+
+.confetti-layer,
+.confetti-particle {
+  pointer-events: none;
+  transform-box: view-box;
+}
+
+.confetti-particle {
+  filter: drop-shadow(0 1.4px 0 rgba(0, 0, 0, 0.16));
+  will-change: transform, opacity;
+}
+
+.birthday-text-layer,
+.birthday-piece,
+.birthday-particle-layer,
+.birthday-star-particle {
+  pointer-events: none;
+  transform-box: view-box;
+}
+
+.birthday-piece {
+  will-change: transform, opacity;
+}
+
+.birthday-star-particle {
+  filter:
+    drop-shadow(0 0 5px rgba(211, 73, 149, 0.62))
+    drop-shadow(0 0 12px rgba(99, 156, 212, 0.42));
+  will-change: transform, opacity;
+}
+
+@media (max-width: 740px) {
+  .svg-host {
+    width: min(98vw, 620px);
+  }
+}

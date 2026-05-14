@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>生日蛋糕火苗动效</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <audio id="burnAudio" src="./assets/audio/燃烧.mp3" preload="auto" autoplay loop></audio>
+    <script>
+      (() => {
+        const burnAudio = document.getElementById('burnAudio');
+        if (!burnAudio) return;
+        burnAudio.volume = 1;
+        burnAudio.loop = true;
+        burnAudio.play().catch(() => {});
+      })();
+    </script>
+    <main class="app">
+      <aside class="control-panel" aria-label="火焰外发光调节">
+        <div class="control-row">
+          <label for="glowIntensity">强度</label>
+          <input id="glowIntensity" type="range" min="0" max="100" value="55" />
+        </div>
+        <div class="control-row">
+          <label for="glowSize">大小</label>
+          <input id="glowSize" type="range" min="40" max="120" value="72" />
+        </div>
+        <div class="control-row">
+          <label for="glowOpacity">透明度</label>
+          <input id="glowOpacity" type="range" min="0" max="100" value="100" />
+        </div>
+        <div class="control-row">
+          <label for="birthdayParticleSize">文字粒子大小</label>
+          <input id="birthdayParticleSize" type="range" min="10" max="100" value="60" />
+        </div>
+        <div class="control-row">
+          <label for="birthdayParticleCount">文字粒子最大数量</label>
+          <input id="birthdayParticleCount" type="range" min="1" max="8" value="8" />
+        </div>
+        <div class="control-row">
+          <label for="starSpinMultiplier">小星星转速</label>
+          <input id="starSpinMultiplier" type="range" min="100" max="24000" value="4500" />
+        </div>
+        <div class="control-row">
+          <button id="volumeToggle" class="control-button" type="button" aria-pressed="false">音量显示</button>
+        </div>
+        <div class="control-row volume-row" id="volumeRow" hidden>
+          <div class="volume-meter" aria-hidden="true">
+            <span id="volumeMeterFill" class="volume-meter-fill"></span>
+          </div>
+          <div class="volume-readout" id="volumeValue">0%</div>
+        </div>
+      </aside>
+      <section id="stage" class="stage" aria-label="生日蛋糕火苗动效">
+        <div id="svgHost" class="svg-host">
+          <div class="loading">Loading...</div>
+        </div>
+      </section>
+    </main>
+    <script src="./app.js?v=20260514-github-1"></script>
+  </body>
+</html>
