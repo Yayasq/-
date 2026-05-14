@@ -720,6 +720,7 @@ function setSceneMode(mode) {
   const bgColor = isDay ? '#fffdf3' : '#31375d';
   STAGE.style.background = bgColor;
   document.body.style.background = bgColor;
+  document.body.classList.toggle('scene-night', !isDay);
 }
 
 function setupCakeLayers() {
@@ -1548,6 +1549,20 @@ function bindVolumePanel() {
   updateVolumeDisplay();
 }
 
+function bindControlPanelVisibility() {
+  const panel = document.getElementById('controlPanel');
+  const toggle = document.getElementById('panelToggle');
+  if (!panel || !toggle) return;
+
+  const setVisible = (visible) => {
+    panel.hidden = !visible;
+    toggle.setAttribute('aria-expanded', visible ? 'true' : 'false');
+  };
+
+  setVisible(false);
+  toggle.addEventListener('click', () => setVisible(panel.hidden));
+}
+
 function revealNextDayText(time = performance.now()) {
   if (activeDayTextIndex >= 6) return false;
   if (activeDayTextIndex >= 0) {
@@ -2337,6 +2352,7 @@ async function init() {
     resetBirthdayTextAnimation();
     clearTimeout(blowHoldTimer);
     blowHoldTimer = 0;
+  bindControlPanelVisibility();
   bindGlowPanel();
   bindBirthdayParticlePanel();
   bindVolumePanel();
